@@ -5,3 +5,4 @@ streamlit_chat
 python-dotenv
 pdf2image
 tiktoken
+PyPDF2
