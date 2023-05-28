@@ -8,3 +8,4 @@ tiktoken
 PyPDF2
 faiss-cpu
 python-docx
+docx2txt
