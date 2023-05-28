@@ -1,6 +1,3 @@
-import subprocess
-import sys
-subprocess.call([sys.executable, 'setup.sh'])
 from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
