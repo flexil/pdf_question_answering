@@ -7,3 +7,4 @@ pdf2image
 tiktoken
 PyPDF2
 faiss-cpu
+python-docx
