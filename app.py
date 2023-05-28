@@ -1,16 +1,18 @@
-from dotenv import load_dotenv
-import streamlit as st
-from PyPDF2 import PdfReader
+from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import OpenAI
 from langchain.callbacks import get_openai_callback
-import docx2txt
+from langchain.vectorstores import FAISS
+from langchain.llms import OpenAI
+from dotenv import load_dotenv
+from PyPDF2 import PdfReader
+import streamlit as st
 from PIL import Image
 import pytesseract
-
+import subprocess
+import docx2txt
+import sys
+subprocess.call([sys.executable, 'setup.sh'])
 st.set_page_config(page_title="PDF Assistant", page_icon=":robot:")
 st.title("File Question Answering And Summarization App Powered by LLMs")
 st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
