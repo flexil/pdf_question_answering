@@ -10,5 +10,5 @@ faiss-cpu
 python-docx
 docx2txt
 pillow
-pytesseract
+
 
