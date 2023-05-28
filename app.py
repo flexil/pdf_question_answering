@@ -1,3 +1,4 @@
+subprocess.call([sys.executable, 'setup.sh'])
 from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -12,7 +13,8 @@ import pytesseract
 import subprocess
 import docx2txt
 import sys
-subprocess.call([sys.executable, 'setup.sh'])
+
+
 st.set_page_config(page_title="PDF Assistant", page_icon=":robot:")
 st.title("File Question Answering And Summarization App Powered by LLMs")
 st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
