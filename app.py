@@ -15,7 +15,7 @@ st.subheader('AI Web App by [Maximilien Kpizingui](https://kpizmax.hashnode.dev)
 '''
 Say goodbye to manual PDF and DOCX files searching! Our AI-powered app instantly extracts valuable insights from your PDF and DOCX files, saving you time and effort.With a user-friendly interface, upload your PDF, ask questions, and receive accurate answers in seconds.
 Our intelligent algorithms analyze the text, understand context, and provide precise answers, even for complex queries.Keep track of your queries with session history and easily clear it when needed.
-Experience the power of AI to unlock information from PDFs with our secure and efficient PDF Question Answering App.
+Experience the power of AI to unlock information from PDFs and DOCXs with our secure and efficient AI App.
 '''
 st.image("post.jpg")
 
