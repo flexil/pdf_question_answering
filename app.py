@@ -41,7 +41,6 @@ def main():
         display_session_history()
 
 def upload_pdf():
-    st.title("Upload PDF")
     st.subheader("Upload your PDF document")
     pdf = st.file_uploader("Choose a PDF file", type="pdf")
 
@@ -56,7 +55,6 @@ def upload_pdf():
         st.text(text)
 
 def upload_word():
-    st.title("Upload Word")
     st.subheader("Upload your Word document")
     document = st.file_uploader("Choose a Word document", type=["docx"])
 
