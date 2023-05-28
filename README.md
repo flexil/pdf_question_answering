@@ -37,7 +37,7 @@ streamlit run main.py
 2. Upload your PDF file using the provided interface.
 3. Ask a question about the PDF content in the text input field.
 4. The application will display the answer based on the uploaded PDF file.
-5. The session history will be shown above the search bar, and you can clear it by clicking the "Clear" button.
+5. The session history will be shown below the search bar, and you can clear it by clicking the "Clear" button.
 
 Link to test the app: https://flexil-pdf-question-answering-app-dgc0cy.streamlit.app/
 ## Contributing
