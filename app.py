@@ -53,11 +53,7 @@ def upload_pdf():
         text = ""
         for page in pdf_reader.pages:
             text += page.extract_text()
-
-  #      st.subheader("PDF Extracted Content")
-   #     st.text(text)
-
-        # Extract text from the uploaded PDF
+        
         extracted_text = text
         st.subheader("PDF Extracted Text")
         st.text(extracted_text)
@@ -70,10 +66,7 @@ def upload_word():
         st.session_state['uploaded_word'] = document
         text = docx2txt.process(document)
 
- #       st.subheader("Document Extracted Content")
- #       st.text(text)
-
-        # Extract text from the uploaded Word document
+ 
         extracted_text = text
         st.subheader("Docx Extracted Text")
         st.text(extracted_text)
