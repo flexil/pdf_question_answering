@@ -14,7 +14,7 @@ import docx2txt
 
 
 st.set_page_config(page_title="PDF Assistant", page_icon=":robot:")
-st.title("File Question Answering And Summarization App Powered by LLMs")
+st.title("DocQuest: Empowering Your Documents with AI - Answering and Summarizing with LLMs")
 st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
 '''
 Say goodbye to manual PDF and DOCX and PNG files text searching and summarization! Our AI-powered app instantly extracts valuable insights from your PDF, DOCX and PNG file, saving you time and effort.With a user-friendly interface, upload your PDF, ask questions, and receive accurate answers in seconds.
