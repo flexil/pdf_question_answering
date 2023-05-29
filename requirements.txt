@@ -11,6 +11,7 @@ python-docx
 docx2txt
 pillow
 pytesseract
+tesseract
 
 
 
