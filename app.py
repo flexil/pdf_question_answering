@@ -13,7 +13,7 @@ import docx2txt
 
 
 
-st.set_page_config(page_title="PDF Assistant", page_icon=":robot:")
+st.set_page_config(page_title="DocQuest", page_icon=":robot:")
 st.title("DocQuest: Empowering Your Documents with AI - Answering and Summarizing with LLMs")
 st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
 '''
@@ -29,7 +29,7 @@ if 'session_history' not in st.session_state:
 def main():
     load_dotenv()
 
-    st.sidebar.title("File Question Answering")
+    st.sidebar.title("DocQuest")
     st.sidebar.subheader("Menu")
     menu_options = ["Upload PDF", "Upload Word", "Upload Image", "Question Answering", "Session History"]
     choice = st.sidebar.selectbox("Select an option", menu_options)
