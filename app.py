@@ -10,7 +10,10 @@ import streamlit as st
 from PIL import Image
 import pytesseract
 import docx2txt
+import subprocess
 
+# Install Tesseract OCR
+subprocess.call('apt-get install tesseract-ocr -y', shell=True)
 
 st.set_page_config(page_title="PDF Assistant", page_icon=":robot:")
 st.title("File Question Answering And Summarization App Powered by LLMs")
