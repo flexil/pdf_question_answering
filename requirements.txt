@@ -12,6 +12,5 @@ docx2txt
 pillow
 pytesseract
 tesseract
-
-
+langchain-community
 
