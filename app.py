@@ -15,7 +15,7 @@ import docx2txt
 
 st.set_page_config(page_title="DocQuest", page_icon=":robot:")
 st.title("DocQuest: Empowering Your Documents with AI")
-st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
+#st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
 '''
 Say goodbye to manual PDF and DOCX and PNG files text searching and summarization! Our AI-powered app instantly extracts valuable insights from your PDF, DOCX and PNG file, saving you time and effort.With a user-friendly interface, upload your PDF, ask questions, and receive accurate answers in seconds.
 Our intelligent algorithms analyze the text, understand context, and provide precise answers and summarization even for complex queries.Keep track of your queries with session history and easily clear it when needed.
