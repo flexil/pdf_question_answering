@@ -15,4 +15,5 @@ tesseract
 langchain-community
 langchain_groq
 transformers
+torch
 
