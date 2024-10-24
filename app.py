@@ -4,6 +4,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
 from langchain_groq import ChatGroq
 from langchain.embeddings import OllamaEmbeddings
+from transformers import AutoModel
 from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
 from dotenv import load_dotenv
@@ -117,7 +118,8 @@ def perform_question_answering(text):
         chunks = text_splitter.split_text(text)
 
         #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
-        embeddings= OllamaEmbeddings()
+        #embeddings= OllamaEmbeddings()
+        embeddings= AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-en', trust_remote_code=True)
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
         docs = knowledge_base.similarity_search(user_question)
