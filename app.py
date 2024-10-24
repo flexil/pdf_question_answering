@@ -119,7 +119,7 @@ def perform_question_answering(text):
 
         #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
         #embeddings= OllamaEmbeddings()
-        embeddings= AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-en', trust_remote_code=True)
+        embeddings= AutoModel.from_pretrained('jina-embeddings-v2-base-en', trust_remote_code=True)
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
         docs = knowledge_base.similarity_search(user_question)
