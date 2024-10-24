@@ -2,6 +2,8 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
+from langchain_groq import ChatGroq
+from langchain.embeddings import OllamaEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
 from dotenv import load_dotenv
@@ -16,6 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_KEY = os.getenv("OPENAI_KEY")
+GROQ_KEY = os.getenv("GROQ_KEY")
 
 st.set_page_config(page_title="DocQuest", page_icon=":robot:")
 st.title("DocQuest: Empowering Your Documents with AI")
@@ -113,11 +116,13 @@ def perform_question_answering(text):
         )
         chunks = text_splitter.split_text(text)
 
-        embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
+        #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
+        embeddings= OllamaEmbeddings()
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
         docs = knowledge_base.similarity_search(user_question)
-        llm = OpenAI(openai_api_key=OPENAI_KEY)
+        #llm = OpenAI(openai_api_key=OPENAI_KEY)
+        llm = ChatGroq( model="llama-3.1-70b-versatile",groq_key=GROQ_KEY)
         chain = load_qa_chain(llm, chain_type="stuff")
         with get_openai_callback() as cb:
             response = chain.run(input_documents=docs, question=user_question)
