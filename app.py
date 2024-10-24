@@ -11,7 +11,11 @@ from PIL import Image
 import pytesseract
 import docx2txt
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
+OPENAI_KEY = os.getenv("OPENAI_KEY")
 
 st.set_page_config(page_title="DocQuest", page_icon=":robot:")
 st.title("DocQuest: Empowering Your Documents with AI")
