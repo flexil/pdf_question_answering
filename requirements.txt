@@ -14,5 +14,6 @@ pytesseract
 tesseract
 langchain-community
 langchain_groq
+torch
 transformers
 
