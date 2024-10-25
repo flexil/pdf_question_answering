@@ -3,7 +3,6 @@ from langchain.text_splitter import CharacterTextSplitter
 #from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
 from langchain_groq import ChatGroq
-from beyondllm import embeddings
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
 from beyondllm.embeddings import HuggingFaceEmbeddings
