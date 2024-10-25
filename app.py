@@ -14,9 +14,10 @@ import streamlit as st
 from PIL import Image
 import pytesseract
 import docx2txt
-
+import nltk
 import os
 from dotenv import load_dotenv
+nltk.download('all')
 load_dotenv()
 
 #OPENAI_KEY = os.getenv("OPENAI_KEY")
