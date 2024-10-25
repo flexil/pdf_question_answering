@@ -4,7 +4,6 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.callbacks import get_openai_callback
 from langchain_groq import ChatGroq
 from beyondllm import embeddings
-from langchain.embeddings import OllamaEmbeddings
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
 from beyondllm.embeddings import HuggingFaceEmbeddings
@@ -18,7 +17,7 @@ import docx2txt
 import nltk
 import os
 from dotenv import load_dotenv
-nltk.download('all')
+nltk.download('punkt')
 load_dotenv()
 
 #OPENAI_KEY = os.getenv("OPENAI_KEY")
