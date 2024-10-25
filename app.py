@@ -7,6 +7,7 @@ from beyondllm import embeddings
 from langchain.embeddings import OllamaEmbeddings
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
+from beyondllm.embeddings import HuggingFaceEmbeddings
 from langchain.llms import OpenAI
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
@@ -120,7 +121,7 @@ def perform_question_answering(text):
         chunks = text_splitter.split_text(text)
 
         #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
-        embeddings= OllamaEmbeddings(model="nomic-embed-text")
+        embeddings= HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         #embeddings= embeddings.FastEmbedEmbeddings("BAAI/bge-small-en-v1.5")
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
