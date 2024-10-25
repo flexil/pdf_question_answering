@@ -12,7 +12,7 @@ docx2txt
 pillow
 pytesseract
 tesseract
-langchain-community
+ -U langchain-community
 langchain_groq
 torch
 transformers
