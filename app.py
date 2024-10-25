@@ -131,7 +131,7 @@ def perform_question_answering(text):
 
         docs = knowledge_base.similarity_search(user_question)
         #llm = OpenAI(openai_api_key=OPENAI_KEY)
-        llm = ChatGroq( model="llama-3.1-70b-versatile",groq_key=groq_api_key)
+        llm = ChatGroq( model="llama-3.1-70b-versatile",groq__api_key=groq_api_key)
         chain = load_qa_chain(llm, chain_type="stuff")
         with get_openai_callback() as cb:
             response = chain.run(input_documents=docs, question=user_question)
