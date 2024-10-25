@@ -16,4 +16,4 @@ langchain-community
 langchain_groq
 #torch
 transformers
-
+llama-index-embeddings-huggingface
