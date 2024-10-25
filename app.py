@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_KEY = os.getenv("OPENAI_KEY")
-GROQ_KEY = os.getenv("GROQ_KEY")
+groq_api_key = os.getenv("GROQ_API_KEY")
 
 st.set_page_config(page_title="DocQuest", page_icon=":robot:")
 st.title("DocQuest: Empowering Your Documents with AI")
@@ -131,7 +131,7 @@ def perform_question_answering(text):
 
         docs = knowledge_base.similarity_search(user_question)
         #llm = OpenAI(openai_api_key=OPENAI_KEY)
-        llm = ChatGroq( model="llama-3.1-70b-versatile",groq_key=GROQ_KEY)
+        llm = ChatGroq( model="llama-3.1-70b-versatile",groq_key=groq_api_key)
         chain = load_qa_chain(llm, chain_type="stuff")
         with get_openai_callback() as cb:
             response = chain.run(input_documents=docs, question=user_question)
