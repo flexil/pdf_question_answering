@@ -2,6 +2,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
@@ -115,7 +116,15 @@ def perform_question_answering(text):
         )
         chunks = text_splitter.split_text(text)
 
-        embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
+        #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
+        model_name = "sentence-transformers/all-mpnet-base-v2"
+        model_kwargs = {'device': 'cpu'}
+        encode_kwargs = {'normalize_embeddings': False}
+        embeddings = HuggingFaceEmbeddings(
+                 model_name=model_name,
+                 model_kwargs=model_kwargs,
+                encode_kwargs=encode_kwargs
+                )
         #embeddings= HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         #embeddings= embeddings.FastEmbedEmbeddings("BAAI/bge-small-en-v1.5")
         knowledge_base = FAISS.from_texts(chunks, embeddings)
