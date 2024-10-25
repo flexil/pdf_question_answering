@@ -1,11 +1,10 @@
 from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
-#from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
 from langchain_groq import ChatGroq
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
-from beyondllm.embeddings import HuggingFaceEmbeddings
 from langchain.llms import OpenAI
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
@@ -116,8 +115,8 @@ def perform_question_answering(text):
         )
         chunks = text_splitter.split_text(text)
 
-        #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
-        embeddings= HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
+        #embeddings= HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         #embeddings= embeddings.FastEmbedEmbeddings("BAAI/bge-small-en-v1.5")
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
