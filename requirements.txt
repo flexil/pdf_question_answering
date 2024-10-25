@@ -15,4 +15,4 @@ tesseract
 langchain-community
 langchain_groq
 llama-index-embeddings-huggingface
-beyondllm
+langchain_huggingface
