@@ -16,7 +16,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-#OPENAI_KEY = os.getenv("OPENAI_KEY")
+OPENAI_KEY = os.getenv("OPENAI_KEY")
 GROQ_KEY = os.getenv("GROQ_KEY")
 
 st.set_page_config(page_title="DocQuest", page_icon=":robot:")
