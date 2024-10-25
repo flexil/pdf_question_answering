@@ -119,8 +119,8 @@ def perform_question_answering(text):
         chunks = text_splitter.split_text(text)
 
         #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
-        #embeddings= OllamaEmbeddings()
-        embeddings= embeddings.FastEmbedEmbeddings("BAAI/bge-small-en-v1.5")
+        embeddings= OllamaEmbeddings(model="nomic-embed-text")
+        #embeddings= embeddings.FastEmbedEmbeddings("BAAI/bge-small-en-v1.5")
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
         docs = knowledge_base.similarity_search(user_question)
