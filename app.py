@@ -25,7 +25,7 @@ st.title("DocQuest: Empowering Your Documents with AI")
 #st.subheader('AI App Implemented By [Maximilien Kpizingui](https://kpizmax.hashnode.dev)')
 '''
 Say goodbye to manual PDF and DOCX and PNG files text searching and summarization! Our AI-powered app instantly extracts valuable insights from your PDF, DOCX and PNG file, saving you time and effort.With a user-friendly interface, upload your PDF, ask questions, and receive accurate answers in seconds.
-Our intelligent algorithms analyze the text, understand context, and provide precise answers and summarization even for complex queries.Keep track of your queries with session history and easily clear it when needed.
+Our intelligent algorithms analyze the text, understand context,provide precise answers, write a new content and summarization even for complex queries.Keep track of your queries with session history and easily clear it when needed.
 Experience the power of AI to unlock information from PDFs,DOCXs and Image text files  with our secure and efficient AI App.
 '''
 st.image("post.jpg")
