@@ -53,64 +53,53 @@ def main():
 
 
 def upload_pdf():
-    st.subheader("Upload your PDF documents")
-    num_files = st.slider("Select the number of PDF files to upload", min_value=1, max_value=10, value=1)
-    pdfs = st.file_uploader("Choose PDF files", type="pdf", accept_multiple_files=True, max_uploads=num_files)
+    st.subheader("Upload your PDF document")
+    pdf = st.file_uploader("Choose a PDF file", type="pdf")
 
-    if pdfs:
-        st.session_state['uploaded_pdfs'] = pdfs  # Store multiple files
-        combined_text = ""
-        for pdf in pdfs:
-            pdf_reader = PdfReader(pdf)
-            for page in pdf_reader.pages:
-                combined_text += page.extract_text() + "\n"
+    if pdf is not None:
+        st.session_state['uploaded_pdf'] = pdf
+        pdf_reader = PdfReader(pdf)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
 
-        extracted_text = combined_text
-        st.subheader("Combined PDFs Extracted Text")
+        extracted_text = text
+        st.subheader("PDF Extracted Text")
         st.text(extracted_text)
         
         perform_question_answering(extracted_text)
-
 
 
 def upload_word():
-    st.subheader("Upload your Word documents")
-    num_files = st.slider("Select the number of Word files to upload", min_value=1, max_value=10, value=1)
-    documents = st.file_uploader("Choose Word documents", type=["docx"], accept_multiple_files=True, max_uploads=num_files)
+    st.subheader("Upload your Word document")
+    document = st.file_uploader("Choose a Word document", type=["docx"])
 
-    if documents:
-        st.session_state['uploaded_word_docs'] = documents
-        combined_text = ""
-        for document in documents:
-            text = docx2txt.process(document)
-            combined_text += text + "\n"
+    if document is not None:
+        st.session_state['uploaded_word'] = document
+        text = docx2txt.process(document)
 
-        extracted_text = combined_text
-        st.subheader("Combined Docx Extracted Text")
+        extracted_text = text
+        st.subheader("Docx Extracted Text")
         st.text(extracted_text)
         
         perform_question_answering(extracted_text)
 
 
-
 def upload_image():
-    st.subheader("Upload your image files")
-    num_files = st.slider("Select the number of image files to upload", min_value=1, max_value=10, value=1)
-    images = st.file_uploader("Choose image files", type=["jpg", "jpeg", "png"], accept_multiple_files=True, max_uploads=num_files)
+    st.subheader("Upload your image")
+    image = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 
-    if images:
-        st.session_state['uploaded_images'] = images
-        combined_text = ""
-        for image in images:
-            img = Image.open(image)
-            extracted_text = pytesseract.image_to_string(img)
-            combined_text += extracted_text + "\n"
+    if image is not None:
+        st.session_state['uploaded_image'] = image
+        img = Image.open(image)
+        st.image(img, caption='Uploaded Image', use_column_width=True)
 
-        st.subheader("Combined Images Extracted Text")
-        st.text(combined_text)
+        # Extract text from the uploaded image
+        extracted_text = pytesseract.image_to_string(img)
+        st.subheader("Image Extracted Text")
+        st.text(extracted_text)
         
-        perform_question_answering(combined_text)
-
+        perform_question_answering(extracted_text)
 
 
 def perform_question_answering(text):
@@ -127,7 +116,7 @@ def perform_question_answering(text):
         )
         chunks = text_splitter.split_text(text)
 
-        #embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_KEY)
+
         model_name = "sentence-transformers/all-mpnet-base-v2"
         model_kwargs = {'device': 'cpu'}
         encode_kwargs = {'normalize_embeddings': False}
@@ -136,12 +125,10 @@ def perform_question_answering(text):
                  model_kwargs=model_kwargs,
                 encode_kwargs=encode_kwargs
                 )
-        #embeddings= HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        #embeddings= embeddings.FastEmbedEmbeddings("BAAI/bge-small-en-v1.5")
+       
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
         docs = knowledge_base.similarity_search(user_question)
-        #llm = OpenAI(openai_api_key=OPENAI_KEY)
         llm = ChatGroq( model="llama-3.1-70b-versatile",groq_api_key=groq_api_key)
         chain = load_qa_chain(llm, chain_type="stuff")
         with get_openai_callback() as cb:
