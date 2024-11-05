@@ -53,53 +53,64 @@ def main():
 
 
 def upload_pdf():
-    st.subheader("Upload your PDF document")
-    pdf = st.file_uploader("Choose a PDF file", type="pdf")
+    st.subheader("Upload your PDF documents")
+    num_files = st.slider("Select the number of PDF files to upload", min_value=1, max_value=10, value=1)
+    pdfs = st.file_uploader("Choose PDF files", type="pdf", accept_multiple_files=True, max_uploads=num_files)
 
-    if pdf is not None:
-        st.session_state['uploaded_pdf'] = pdf
-        pdf_reader = PdfReader(pdf)
-        text = ""
-        for page in pdf_reader.pages:
-            text += page.extract_text()
+    if pdfs:
+        st.session_state['uploaded_pdfs'] = pdfs  # Store multiple files
+        combined_text = ""
+        for pdf in pdfs:
+            pdf_reader = PdfReader(pdf)
+            for page in pdf_reader.pages:
+                combined_text += page.extract_text() + "\n"
 
-        extracted_text = text
-        st.subheader("PDF Extracted Text")
+        extracted_text = combined_text
+        st.subheader("Combined PDFs Extracted Text")
         st.text(extracted_text)
         
         perform_question_answering(extracted_text)
+
 
 
 def upload_word():
-    st.subheader("Upload your Word document")
-    document = st.file_uploader("Choose a Word document", type=["docx"])
+    st.subheader("Upload your Word documents")
+    num_files = st.slider("Select the number of Word files to upload", min_value=1, max_value=10, value=1)
+    documents = st.file_uploader("Choose Word documents", type=["docx"], accept_multiple_files=True, max_uploads=num_files)
 
-    if document is not None:
-        st.session_state['uploaded_word'] = document
-        text = docx2txt.process(document)
+    if documents:
+        st.session_state['uploaded_word_docs'] = documents
+        combined_text = ""
+        for document in documents:
+            text = docx2txt.process(document)
+            combined_text += text + "\n"
 
-        extracted_text = text
-        st.subheader("Docx Extracted Text")
+        extracted_text = combined_text
+        st.subheader("Combined Docx Extracted Text")
         st.text(extracted_text)
         
         perform_question_answering(extracted_text)
+
 
 
 def upload_image():
-    st.subheader("Upload your image")
-    image = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
+    st.subheader("Upload your image files")
+    num_files = st.slider("Select the number of image files to upload", min_value=1, max_value=10, value=1)
+    images = st.file_uploader("Choose image files", type=["jpg", "jpeg", "png"], accept_multiple_files=True, max_uploads=num_files)
 
-    if image is not None:
-        st.session_state['uploaded_image'] = image
-        img = Image.open(image)
-        st.image(img, caption='Uploaded Image', use_column_width=True)
+    if images:
+        st.session_state['uploaded_images'] = images
+        combined_text = ""
+        for image in images:
+            img = Image.open(image)
+            extracted_text = pytesseract.image_to_string(img)
+            combined_text += extracted_text + "\n"
 
-        # Extract text from the uploaded image
-        extracted_text = pytesseract.image_to_string(img)
-        st.subheader("Image Extracted Text")
-        st.text(extracted_text)
+        st.subheader("Combined Images Extracted Text")
+        st.text(combined_text)
         
-        perform_question_answering(extracted_text)
+        perform_question_answering(combined_text)
+
 
 
 def perform_question_answering(text):
