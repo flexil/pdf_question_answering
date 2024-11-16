@@ -64,8 +64,11 @@ def upload_pdf():
             text += page.extract_text()
 
         extracted_text = text
-        st.subheader("PDF Extracted Text")
-        st.text(extracted_text)
+        st.subheader("PDF Extracted Text Summary")
+        llm = ChatGroq(model="llama-3.1-70b-versatile", groq_api_key=groq_api_key)
+        chain = LLMChain(llm=llm, prompt="Summarize the following text: ")
+        summary = chain.run(extracted_text)
+        st.text(summary)
         
         perform_question_answering(extracted_text)
 
