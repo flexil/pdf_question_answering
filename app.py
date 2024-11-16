@@ -4,6 +4,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
+from langchain.prompts import BasePromptTemplate
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
