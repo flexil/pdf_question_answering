@@ -1,14 +1,12 @@
 from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings.openai import OpenAIEmbeddings
+# from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
-from langchain.prompts import BasePromptTemplate
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
-from langchain.chains import LLMChain
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 import streamlit as st
@@ -19,7 +17,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-OPENAI_KEY = os.getenv("OPENAI_KEY")
+# OPENAI_KEY = os.getenv("OPENAI_KEY")
 groq_api_key = os.getenv("GROQ_API_KEY")
 
 st.set_page_config(page_title="DocQuest", page_icon=":robot:")
