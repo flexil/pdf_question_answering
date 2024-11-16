@@ -67,11 +67,16 @@ def upload_pdf():
         extracted_text = text
         st.subheader("PDF Extracted Text Summary")
         llm = ChatGroq(model="llama-3.1-70b-versatile", groq_api_key=groq_api_key)
-        chain = LLMChain(llm=llm, prompt="Summarize the following text: ")
-        summary = chain.run(extracted_text)
+        prompt = BasePromptTemplate(
+            input_variables=["text"],
+            template="Summarize the following text: {text}"
+        )
+        chain = LLMChain(llm=llm, prompt=prompt)
+        summary = chain.run(text)
         st.text(summary)
         
         perform_question_answering(extracted_text)
+
 
 
 def upload_word():
