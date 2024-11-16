@@ -9,6 +9,7 @@ from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
+from langchain_llms import LLMChain
 import streamlit as st
 from PIL import Image
 import pytesseract
