@@ -6,10 +6,9 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
 from transformers import AutoModel
 from langchain.vectorstores import FAISS
-from langchain.llms import OpenAI
+from langchain.llms import OpenAI, LLMChain
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
-from langchain_llms import LLMChain
 import streamlit as st
 from PIL import Image
 import pytesseract
